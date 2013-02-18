@@ -6,7 +6,7 @@ WriteMakefile(
 	AUTHOR => 'Paul Roub <paul@roub.net>',
 	#VERSION_FROM => 'lib/Todotxt/Recur.pm',
 	VERSION => '1.0.3',
-	INSTALLSITESCRIPT => $ENV{'HOME'} . "/.todo.actions.d",
+	INSTALLSITESCRIPT => $ENV{'HOME'} . "/.todo/actions.d",
     EXE_FILES           => [ 'recur' ],
 	MIN_PERL_VERSION => '5.8.8',
     PREREQ_PM => {
