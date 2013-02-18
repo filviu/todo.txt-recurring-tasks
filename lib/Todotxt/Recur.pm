@@ -1,4 +1,4 @@
-package Todotxt::Recur 1.03;
+package Todotxt::Recur;
 
 use strict;
 use warnings;
