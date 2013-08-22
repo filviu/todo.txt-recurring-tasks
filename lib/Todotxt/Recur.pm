@@ -23,12 +23,15 @@ my %ordinals = (
 		'last' => 32
 );
 
+my %periods = ( 'day' => 1, 'week' => 7 );
+
 sub new 
 {
     my $this = shift;
     my $class = ref($this) || $this;
     my $self = {};
-
+    
+    $self->{INTERVAL} = 0;
     $self->{DAILY} = 0;
     $self->{WD} = -1;
     $self->{TASK} = "";
@@ -47,44 +50,53 @@ sub init
     my ($self, $text) = @_;
 
     if ($text =~ /^\s*(.+?)\s*:\s*(.+?)\s*$/)
+    {
+      $self->{TASK} = $2;
+
+      my $day = lc($1);
+
+      if ($day eq 'daily')
       {
-	  $self->{TASK} = $2;
-
-	  my $day = lc($1);
-
-	  if ($day eq 'daily')
-	    {
-		$self->{DAILY} = 1;
-		return;
-	    }
-	  elsif ($day =~ /^((?:(?:first|second|third|fourth|fifth|last)[ \t,]?)+)\s+(.+)$/)
-	    {
-		my $weeks = 0;
-
-		$day = $2;
-		my @parts = split(/[ \t,]+/, $1);
-
-		for my $part (@parts)
-		  {
-		      $weeks += $ordinals{$part};
-		  }
-
-		$self->{WEEKS} = $weeks;
-	    }
-
-	  if (defined $days{$day})
-	    {
-		$self->{WD} = $days{$day};
-	    }
-	  else
-	    {
-		die "Can't parse $text\n";
-	    }
+        $self->{DAILY} = 1;
+        return;
       }
+      elsif ($day =~ /^((?:(?:first|second|third|fourth|fifth|last)[ \t,]?)+)\s+(.+)$/)
+      {
+        my $weeks = 0;
+
+        $day = $2;
+        my @parts = split(/[ \t,]+/, $1);
+
+        for my $part (@parts)
+          {
+              $weeks += $ordinals{$part};
+          }
+
+        $self->{WEEKS} = $weeks;
+      }
+
+      if (defined $days{$day})
+      {
+        $self->{WD} = $days{$day};
+      }
+      elsif ($text =~ /^\s*every (\d+ )?(day|week)s?:\s*(.+?)\s*$/i)
+      {
+        my $num = 1;
+        if( defined $1 )
+        { 
+          $num = $1; 
+        }
+        $self->{INTERVAL} = $num*$periods{$2};
+      }
+      else
+      {
+        die "Can't parse $text\n";
+      }
+    }
     elsif ($text =~ /\S/)
-      {
-	  die "Can't parse $text\n";
-      }
+    {
+      die "Can't parse $text\n";
+    }
 }
 
 
