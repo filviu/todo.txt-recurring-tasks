@@ -52,7 +52,10 @@ while (<INF>)
       my $line = $_;
       chomp $line;
 
-      push @recur, $line;
+      if ($line !~ m/^#/)
+        {
+            push @recur, $line;
+        }
   }
 
 close INF;
