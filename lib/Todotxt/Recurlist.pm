@@ -38,7 +38,9 @@ sub getLastDoneDate
 {
   my( $self, $recur ) = @_;
   return "" if !exists $self->{DONEFILE}; 
-  my $cmd = "grep \"".$recur->{TASK}."\" ".$self->{DONEFILE}." | cut -d\" \" -f 2 | tail -n 1";
+# fix for priority. quick and ugly
+  (my $baretask = $recur->{TASK}) =~ s/\(.\)\s//;
+  my $cmd = "grep \"".$baretask."\" ".$self->{DONEFILE}." | tail -n1 | grep -o '[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}' | head -n1";
   return `$cmd`
 }
 

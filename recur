@@ -72,6 +72,6 @@ my $adds = $rl->addList($date);
 
 for my $add (@$adds)
   {
-      my @args = ($ENV{TODO_FULL_SH}, "command", "add", $add);
+      my @args = ($ENV{TODO_FULL_SH}, "-t", "command", "add", $add);
       (system(@args) == 0) or die "system @args failed: $?";
   }
