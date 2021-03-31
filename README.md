@@ -16,6 +16,8 @@ or
 
 Where:
 
+- `every` is an optional keyword: tasks recur after a period since they were 
+  previously completed.
 - `week` is an optional list of weeks - "first", "second", "third", "fourth", 
   "fifth" or "last".  Weeks are separated by commas __only__ (no spaces).
 - `day` is __one__ of "monday", "tuesday", "wednesday", "thursday", "friday", 
@@ -31,7 +33,7 @@ Where:
     last saturday: Apply the dog's flea medicine
     first,third friday: Collect and file expenses
     daily: run the dishwasher
-
+    every 2 months: clean the oven
 Note that the add-on attempts to be smart about things, so if you ran this on a
 Sunday when `todo.txt` already contained:
 
