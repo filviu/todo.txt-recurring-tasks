@@ -1,3 +1,8 @@
+Why this fork: integrate fixes from other users, add support for priorities in 
+recuring tasks, enabled adding creation date. Also upstream(s) seemed abandoned.
+PERL is really not my language but I will try and maintain this for as long as 
+I use it.
+
 An add-on for Gina Trapani's [todo.txt](https://github.com/ginatrapani/todo.txt-cli) script,
 allowing the automatic addition of recurring tasks to the todo list.
 
