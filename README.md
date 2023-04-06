@@ -53,11 +53,16 @@ project) and add nothing.
 
 ## Installation:
 
-Download the latest [recur archive](https://github.com/downloads/paulroub/todo.txt-recurring-tasks/Todotxt-Recur-1.02.tar.gz),
-and unpack it in a temporary directory, e.g.
+### Dependencies
 
-    tar zxf Todotxt-Recur-1.02.tar.gz
-    cd Todotxt-Recur-1.02
+#### Ubuntu
+
+```
+sudo apt install libdatetime-perl
+sudo apt install libdatetime-format-duration-perl
+```
+
+Clone or download this repository:
 
 If you are using the standard `todo.sh` location for add-ons 
 (`$HOME/.todo.actions.d`), you'll want to run:
